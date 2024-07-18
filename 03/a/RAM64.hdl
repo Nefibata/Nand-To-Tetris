@@ -1,0 +1,109 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/03/a/RAM64.hdl
+/**
+ * Memory of sixty four 16-bit registers.
+ * If load is asserted, the value of the register selected by
+ * address is set to in; Otherwise, the value does not change.
+ * The value of the selected register is emitted by out.
+ */
+CHIP RAM64 {
+    IN in[16], load, address[6];
+    OUT out[16];
+
+    PARTS:
+DMux8Way(in=load,sel=address[3..5],a=Dload1,b=Dload2,c=Dload3,d=Dload4,e=Dload5,f=Dload6,g=Dload7,h=Dload8);
+ 
+ DMux8Way(in=Dload1,sel=address[0..2],a=load1,b=load2,c=load3,d=load4,e=load5,f=load6,g=load7,h=load8);
+  RAM8(in=in,load=load1,out=out1);
+RAM8(in=in,load=load2,out=out2);
+RAM8(in=in,load=load3,out=out3);
+RAM8(in=in,load=load4,out=out4);
+  RAM8(in=in,load=load5,out=out5);
+RAM8(in=in,load=load6,out=out6);
+RAM8(in=in,load=load7,out=out7);
+RAM8(in=in,load=load8,out=out8);
+Mux8Way16(a=out1,b=out2,c=out3,d=out4,e=out5,f=out6,g=out7,h=out8,sel=address[0..2],out=Mout1);
+
+ DMux8Way(in=Dload2,sel=address[0..2],a=load11,b=load21,c=load31,d=load41,e=load51,f=load61,g=load71,h=load81);
+  RAM8(in=in,load=load11,out=out11);
+RAM8(in=in,load=load21,out=out21);
+RAM8(in=in,load=load31,out=out31);
+RAM8(in=in,load=load41,out=out41);
+  RAM8(in=in,load=load51,out=out51);
+RAM8(in=in,load=load61,out=out61);
+RAM8(in=in,load=load71,out=out71);
+RAM8(in=in,load=load81,out=out81);
+Mux8Way16(a=out11,b=out21,c=out31,d=out41,e=out51,f=out61,g=out71,h=out81,sel=address[0..2],out=Mout2);
+
+ DMux8Way(in=Dload3,sel=address[0..2],a=load12,b=load22,c=load32,d=load42,e=load52,f=load62,g=load72,h=load82);
+  RAM8(in=in,load=load12,out=out12);
+RAM8(in=in,load=load22,out=out22);
+RAM8(in=in,load=load32,out=out32);
+RAM8(in=in,load=load42,out=out42);
+  RAM8(in=in,load=load52,out=out52);
+RAM8(in=in,load=load62,out=out62);
+RAM8(in=in,load=load72,out=out72);
+RAM8(in=in,load=load82,out=out82);
+Mux8Way16(a=out12,b=out22,c=out32,d=out42,e=out52,f=out62,g=out72,h=out82,sel=address[0..2],out=Mout3);
+
+ DMux8Way(in=Dload4,sel=address[0..2],a=load13,b=load23,c=load33,d=load43,e=load53,f=load63,g=load73,h=load83);
+  RAM8(in=in,load=load13,out=out13);
+RAM8(in=in,load=load23,out=out23);
+RAM8(in=in,load=load33,out=out33);
+RAM8(in=in,load=load43,out=out43);
+  RAM8(in=in,load=load53,out=out53);
+RAM8(in=in,load=load63,out=out63);
+RAM8(in=in,load=load73,out=out73);
+RAM8(in=in,load=load83,out=out83);
+Mux8Way16(a=out13,b=out23,c=out33,d=out43,e=out53,f=out63,g=out73,h=out83,sel=address[0..2],out=Mout4);
+
+ DMux8Way(in=Dload5,sel=address[0..2],a=load14,b=load24,c=load34,d=load44,e=load54,f=load64,g=load74,h=load84);
+  RAM8(in=in,load=load14,out=out14);
+RAM8(in=in,load=load24,out=out24);
+RAM8(in=in,load=load34,out=out34);
+RAM8(in=in,load=load44,out=out44);
+  RAM8(in=in,load=load54,out=out54);
+RAM8(in=in,load=load64,out=out64);
+RAM8(in=in,load=load74,out=out74);
+RAM8(in=in,load=load84,out=out84);
+Mux8Way16(a=out14,b=out24,c=out34,d=out44,e=out54,f=out64,g=out74,h=out84,sel=address[0..2],out=Mout5);
+
+ DMux8Way(in=Dload6,sel=address[0..2],a=load15,b=load25,c=load35,d=load45,e=load55,f=load65,g=load75,h=load85);
+  RAM8(in=in,load=load15,out=out15);
+RAM8(in=in,load=load25,out=out25);
+RAM8(in=in,load=load35,out=out35);
+RAM8(in=in,load=load45,out=out45);
+  RAM8(in=in,load=load55,out=out55);
+RAM8(in=in,load=load65,out=out65);
+RAM8(in=in,load=load75,out=out75);
+RAM8(in=in,load=load85,out=out85);
+Mux8Way16(a=out15,b=out25,c=out35,d=out45,e=out55,f=out65,g=out75,h=out85,sel=address[0..2],out=Mout6);
+
+ DMux8Way(in=Dload7,sel=address[0..2],a=load16,b=load26,c=load36,d=load46,e=load56,f=load66,g=load76,h=load86);
+  RAM8(in=in,load=load16,out=out16);
+RAM8(in=in,load=load26,out=out26);
+RAM8(in=in,load=load36,out=out36);
+RAM8(in=in,load=load46,out=out46);
+  RAM8(in=in,load=load56,out=out56);
+RAM8(in=in,load=load66,out=out66);
+RAM8(in=in,load=load76,out=out76);
+RAM8(in=in,load=load86,out=out86);
+Mux8Way16(a=out16,b=out26,c=out36,d=out46,e=out56,f=out66,g=out76,h=out86,sel=address[0..2],out=Mout7);
+
+ DMux8Way(in=Dload8,sel=address[0..2],a=load17,b=load27,c=load37,d=load47,e=load57,f=load67,g=load77,h=load87);
+  RAM8(in=in,load=load17,out=out17);
+RAM8(in=in,load=load27,out=out27);
+RAM8(in=in,load=load37,out=out37);
+RAM8(in=in,load=load47,out=out47);
+  RAM8(in=in,load=load57,out=out57);
+RAM8(in=in,load=load67,out=out67);
+RAM8(in=in,load=load77,out=out77);
+RAM8(in=in,load=load87,out=out87);
+Mux8Way16(a=out17,b=out27,c=out37,d=out47,e=out57,f=out67,g=out77,h=out87,sel=address[0..2],out=Mout8);
+
+Mux8Way16(a=Mout1,b=Mout2,c=Mout3,d=Mout4,e=Mout5,f=Mout6,g=Mout7,h=Mout8,sel=address[3..5],out=out);
+
+
+}
